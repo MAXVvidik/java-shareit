@@ -25,10 +25,12 @@ public class InMemoryUserStorage implements UserStorage {
         users.put(id, user);
         return user;
     }
+
     @Override
     public void deleteUser(int id) {
         users.remove(id);
     }
+
     @Override
     public boolean isContainUser(int id) {
         return users.containsKey(id);
@@ -57,10 +59,11 @@ public class InMemoryUserStorage implements UserStorage {
         users.put(id, userFromMemory);
         return userFromMemory;
     }
+
     @Override
     public boolean isExistEmail(String email) {
         boolean isExistEmail = false;
-        for (User user :users.values()) {
+        for (User user : users.values()) {
             if (user.getEmail().equals(email)) {
                 isExistEmail = true;
                 break;

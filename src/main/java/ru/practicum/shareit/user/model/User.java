@@ -3,7 +3,9 @@ package ru.practicum.shareit.user.model;
 /**
  * TODO Sprint add-controllers.
  */
+
 import lombok.Data;
+
 @Data
 public class User {
     private int id;
