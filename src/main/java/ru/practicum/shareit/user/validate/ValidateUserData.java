@@ -14,7 +14,7 @@ public class ValidateUserData {
         this.user = user;
     }
 
-    public boolean isCorrectName() {// proverka name
+    public boolean isCorrectName() { // proverka name
         if (!user.getName().isEmpty() && !user.getName().contains(" ")) {
             return true;
         } else {
@@ -23,7 +23,7 @@ public class ValidateUserData {
         }
     }
 
-    public boolean isCorrectEmail() {// proverka email
+    public boolean isCorrectEmail() { // proverka email
         if (user.getEmail() != null && !user.getEmail().isEmpty() && user.getEmail().contains("@")) {
             return true;
         } else {
@@ -32,7 +32,7 @@ public class ValidateUserData {
         }
     }
 
-    public boolean checkAllData(User user) {// proverka name and email vmeste
+    public boolean checkAllData(User user) { // proverka name and email vmeste
         setUser(user);
         if (isCorrectEmail() && isCorrectName()) {
             return true;
