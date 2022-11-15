@@ -13,18 +13,20 @@ public class ValidateUserData {
     private void setUser(User user) {
         this.user = user;
     }
+
     public boolean isCorrectName() {// proverka name
         if (!user.getName().isEmpty() && !user.getName().contains(" ")) {
             return true;
-        }else {
+        } else {
             log.warn("Ошибка во входных данных. Логин пустой или содержит пробелы");
             return false;
         }
     }
+
     public boolean isCorrectEmail() {// proverka email
         if (user.getEmail() != null && !user.getEmail().isEmpty() && user.getEmail().contains("@")) {
             return true;
-        }else {
+        } else {
             log.warn("Ошибка во входных данных. Электронная почта пустая или не содержит @");
             return false;
         }
@@ -34,7 +36,7 @@ public class ValidateUserData {
         setUser(user);
         if (isCorrectEmail() && isCorrectName()) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
