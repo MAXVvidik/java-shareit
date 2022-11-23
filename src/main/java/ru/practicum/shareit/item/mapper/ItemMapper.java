@@ -64,6 +64,7 @@ public class ItemMapper {
                 null
         );
     }
+
     public static Item fromItemDto(ItemDto itemDto) {
         return new Item(
                 itemDto.getId(),

@@ -23,7 +23,6 @@ public class UserService {
     private final ValidateUserData validateUserData;
 
 
-
     @Autowired
     public UserService(UserRepository userRepository, ValidateUserData validateUserData) {
         this.userRepository = userRepository;
@@ -53,15 +52,11 @@ public class UserService {
     }
 
     public UserDto getUser(int id) {
-        return UserMapper.toUserDto(userRepository.findById(id).orElseThrow(() -> new InputDataException(
-                "Пользователь с таким id не найден")));
+        return UserMapper.toUserDto(userRepository.findById(id).orElseThrow(() -> new InputDataException("Пользователь с таким id не найден")));
     }
 
     public List<UserDto> getAllUsers() {
-        return userRepository.findAll()
-                .stream()
-                .map(UserMapper::toUserDto)
-                .collect(Collectors.toList());
+        return userRepository.findAll().stream().map(UserMapper::toUserDto).collect(Collectors.toList());
     }
 
     public UserDto updateUser(UserDto userDto, int id) throws InputDataException {

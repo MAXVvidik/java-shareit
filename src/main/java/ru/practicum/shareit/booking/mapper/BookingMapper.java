@@ -33,6 +33,7 @@ public class BookingMapper {
                 item.getAvailable()
         );
     }
+
     public static BookingDto toBookingDto(Booking booking) {
         return BookingDto.builder()
                 .id(booking.getId())
