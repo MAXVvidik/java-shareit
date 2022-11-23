@@ -14,16 +14,16 @@ public class ValidateUserData {
         this.user = user;
     }
 
-    public boolean isCorrectName() { // proverka name
-        if (!user.getName().isEmpty() && !user.getName().contains(" ")) {
+    public boolean checkAllData(User user) {
+        setUser(user);
+        if (isCorrectEmail() && isCorrectName()) {
             return true;
         } else {
-            log.warn("Ошибка во входных данных. Логин пустой или содержит пробелы");
             return false;
         }
     }
 
-    public boolean isCorrectEmail() { // proverka email
+    public boolean isCorrectEmail() {
         if (user.getEmail() != null && !user.getEmail().isEmpty() && user.getEmail().contains("@")) {
             return true;
         } else {
@@ -32,11 +32,11 @@ public class ValidateUserData {
         }
     }
 
-    public boolean checkAllData(User user) { // proverka name and email vmeste
-        setUser(user);
-        if (isCorrectEmail() && isCorrectName()) {
+    public boolean isCorrectName() {
+        if (!user.getName().isEmpty() && !user.getName().contains(" ")) {
             return true;
         } else {
+            log.warn("Ошибка во входных данных. Логин пустой или содержит пробелы");
             return false;
         }
     }
