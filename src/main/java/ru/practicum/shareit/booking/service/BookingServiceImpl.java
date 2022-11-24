@@ -49,7 +49,7 @@ public class BookingServiceImpl implements BookingService {
         if (!item.getAvailable()) {
             throw new ValidationException("Вещь не свободна.");
         }
-        if (item.getOwner().getId() == userId) {
+        if (item.getOwner().getId() != userId) {
             throw new InputDataException("У пользователя нет прав");
         }
         if (booking.getStart().isBefore(currentDateTime) || booking.getEnd().isBefore(currentDateTime)
