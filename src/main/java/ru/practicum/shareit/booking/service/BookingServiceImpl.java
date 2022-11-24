@@ -26,20 +26,6 @@ public class BookingServiceImpl implements BookingService {
     private final UserService userService;
     private final BookingRepository bookingRepository;
 
-    private void checkBookingState(String result) {
-        boolean flag = false;
-
-        for (BookingState state : BookingState.values()) {
-            if (state.name().equals(result)) {
-                flag = true;
-                break;
-            }
-        }
-        if (!flag) {
-            throw new ValidationException("Unknown state: " + result);
-        }
-    }
-
     @Override
     public Booking createBooking(int userId, Booking booking) {
         LocalDateTime currentDateTime = LocalDateTime.now();
@@ -49,7 +35,7 @@ public class BookingServiceImpl implements BookingService {
         if (!item.getAvailable()) {
             throw new ValidationException("Вещь не свободна.");
         }
-        if (item.getOwner().getId() != userId) {
+        if (item.getOwner().getId() == userId) {
             throw new InputDataException("У пользователя нет прав");
         }
         if (booking.getStart().isBefore(currentDateTime) || booking.getEnd().isBefore(currentDateTime)
@@ -148,5 +134,17 @@ public class BookingServiceImpl implements BookingService {
         return result;
     }
 
+    private void checkBookingState(String result) {
+        boolean flag = false;
 
+        for (BookingState state : BookingState.values()) {
+            if (state.name().equals(result)) {
+                flag = true;
+                break;
+            }
+        }
+        if (!flag) {
+            throw new ValidationException("Unknown state: " + result);
+        }
+    }
 }
