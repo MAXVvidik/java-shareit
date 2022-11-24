@@ -1,7 +1,6 @@
 package ru.practicum.shareit.item.storage;
 
 import org.springframework.stereotype.Component;
-
 import ru.practicum.shareit.item.model.Item;
 
 import java.util.*;
@@ -12,6 +11,11 @@ public class InMemoryItemStorage implements ItemStorage {
 
     private final Map<Integer, Item> items = new HashMap<>();
     private int id = 0;
+
+    private int getId() {
+        id++;
+        return id;
+    }
 
     @Override
     public Item addItem(Item item) {
@@ -32,10 +36,22 @@ public class InMemoryItemStorage implements ItemStorage {
     }
 
     @Override
+    public boolean isContainItem(int id) {
+        return items.containsKey(id);
+    }
+
+    @Override
+    public void deleteItem(int id) {
+        if (isContainItem(id)) {
+            items.remove(id);
+        }
+    }
+
+    @Override
     public List<Item> getItemsByUserId(int userId) {
         return getAllItems()
                 .stream()
-                .filter(i -> Objects.equals(i.getUserId(), userId))
+                .filter(i -> Objects.equals(i.getOwner().getId(), userId))
                 .collect(Collectors.toList());
     }
 
@@ -72,20 +88,4 @@ public class InMemoryItemStorage implements ItemStorage {
         return itemDb;
     }
 
-    @Override
-    public void deleteItem(int id) {
-        if (isContainItem(id)) {
-            items.remove(id);
-        }
-    }
-
-    @Override
-    public boolean isContainItem(int id) {
-        return items.containsKey(id);
-    }
-
-    private int getId() {
-        id++;
-        return id;
-    }
 }
