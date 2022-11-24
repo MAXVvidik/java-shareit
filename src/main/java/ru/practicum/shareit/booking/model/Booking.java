@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private int id;
     @ManyToOne
     @JoinColumn(name = "item_id")
