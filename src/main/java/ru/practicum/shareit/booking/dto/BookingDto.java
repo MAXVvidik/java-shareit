@@ -23,6 +23,7 @@ public class BookingDto {
     private BookingDto.User booker;
     private BookingStatus status;
 
+
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
