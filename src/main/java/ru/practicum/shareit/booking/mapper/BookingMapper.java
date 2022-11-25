@@ -7,30 +7,12 @@ import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.user.model.User;
 
 public class BookingMapper {
-
     public static CreatedBookingDto toCreatedBookingDto(Booking booking) {
         return new CreatedBookingDto(
                 booking.getId(),
                 booking.getStart(),
                 booking.getEnd(),
                 booking.getItem().getId()
-        );
-    }
-
-    private static BookingDto.User toUser(User user) {
-        return new BookingDto.User(
-                user.getId(),
-                user.getName(),
-                user.getEmail()
-        );
-    }
-
-    private static BookingDto.Item toItem(Item item) {
-        return new BookingDto.Item(
-                item.getId(),
-                item.getName(),
-                item.getDescription(),
-                item.getAvailable()
         );
     }
 
@@ -55,5 +37,22 @@ public class BookingMapper {
                 .booker(null)
                 .status(null)
                 .build();
+    }
+
+    private static BookingDto.User toUser(User user) {
+        return new BookingDto.User(
+                user.getId(),
+                user.getName(),
+                user.getEmail()
+        );
+    }
+
+    private static BookingDto.Item toItem(Item item) {
+        return new BookingDto.Item(
+                item.getId(),
+                item.getName(),
+                item.getDescription(),
+                item.getAvailable()
+        );
     }
 }
