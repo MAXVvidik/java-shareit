@@ -19,8 +19,8 @@ public class BookingDto {
     private int id;
     private LocalDateTime start;
     private LocalDateTime end;
-    private BookingDto.Item item;
-    private BookingDto.User booker;
+    private Item item;
+    private User booker;
     private BookingStatus status;
 
     @Data

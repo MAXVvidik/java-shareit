@@ -67,7 +67,7 @@ public class ItemController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<ItemDto> updateItem(@RequestHeader(value = HEADER_USER_ID, required = false) Integer userId,
-                                              @RequestBody ItemDto itemDto, @PathVariable("id") int id) {
+                                           @RequestBody ItemDto itemDto, @PathVariable("id") int id) {
         log.info("Получен запрос к эндпоинту PATCH /itemDto");
         itemDto.setId(id);
         return new ResponseEntity<>(itemService.updateItem(itemDto, userId), HttpStatus.OK);

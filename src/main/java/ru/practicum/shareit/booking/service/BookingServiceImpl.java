@@ -21,7 +21,6 @@ import java.util.Collection;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-
 public class BookingServiceImpl implements BookingService {
     private final ItemService itemService;
     private final UserService userService;

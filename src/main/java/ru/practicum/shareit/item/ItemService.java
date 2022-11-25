@@ -73,10 +73,10 @@ public class ItemService {
     }
 
     public List<Item> getItemsByUserId(int userId) {
-        return itemRepository.findAllByOwnerId(userId)
-                .stream()
-                .map(this::setBookings)
-                .collect(Collectors.toList());
+            return itemRepository.findAllByOwnerId(userId)
+                    .stream()
+                    .map(this::setBookings)
+                    .collect(Collectors.toList());
     }
 
     public List<ItemDto> getItemsBySubString(String text) {
