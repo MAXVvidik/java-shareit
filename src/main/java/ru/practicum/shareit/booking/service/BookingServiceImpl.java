@@ -126,7 +126,7 @@ public class BookingServiceImpl implements BookingService {
                 result = bookingRepository.findAllByBookerAndFutureState(userId);
                 break;
             case "WAITING":
-                result = bookingRepository.findAllByBookerIdAndStatus(userId, BookingStatus.APPROVED);
+                result = bookingRepository.findAllByBookerIdAndStatus(userId, BookingStatus.WAITING);
                 break;
             case "REJECTED":
                 result = bookingRepository.findAllByBookerIdAndStatus(userId, BookingStatus.REJECTED);
