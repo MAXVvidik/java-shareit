@@ -12,11 +12,6 @@ public class InMemoryItemStorage implements ItemStorage {
     private final Map<Integer, Item> items = new HashMap<>();
     private int id = 0;
 
-    private int getId() {
-        id++;
-        return id;
-    }
-
     @Override
     public Item addItem(Item item) {
         int id = getId();
@@ -33,18 +28,6 @@ public class InMemoryItemStorage implements ItemStorage {
     @Override
     public List<Item> getAllItems() {
         return new ArrayList<>(items.values());
-    }
-
-    @Override
-    public boolean isContainItem(int id) {
-        return items.containsKey(id);
-    }
-
-    @Override
-    public void deleteItem(int id) {
-        if (isContainItem(id)) {
-            items.remove(id);
-        }
     }
 
     @Override
@@ -88,4 +71,20 @@ public class InMemoryItemStorage implements ItemStorage {
         return itemDb;
     }
 
+    @Override
+    public void deleteItem(int id) {
+        if (isContainItem(id)) {
+            items.remove(id);
+        }
+    }
+
+    @Override
+    public boolean isContainItem(int id) {
+        return items.containsKey(id);
+    }
+
+    private int getId() {
+        id++;
+        return id;
+    }
 }

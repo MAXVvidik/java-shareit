@@ -14,11 +14,6 @@ public class InMemoryUserStorage implements UserStorage {
     private final Map<Integer, User> users = new HashMap<>();
     private int id = 0;
 
-    private int getId() {
-        id++;
-        return id;
-    }
-
     @Override
     public User addUser(User user) {
         int id = getId();
@@ -38,16 +33,6 @@ public class InMemoryUserStorage implements UserStorage {
     }
 
     @Override
-    public void deleteUser(int id) {
-        users.remove(id);
-    }
-
-    @Override
-    public boolean isContainUser(int id) {
-        return users.containsKey(id);
-    }
-
-    @Override
     public User updateUser(User user) {
         int id = user.getId();
         User userFromMemory = users.get(id);
@@ -62,9 +47,19 @@ public class InMemoryUserStorage implements UserStorage {
     }
 
     @Override
+    public void deleteUser(int id) {
+        users.remove(id);
+    }
+
+    @Override
+    public boolean isContainUser(int id) {
+        return users.containsKey(id);
+    }
+
+    @Override
     public boolean isExistEmail(String email) {
         boolean isExistEmail = false;
-        for (User user : users.values()) {
+        for (User user :users.values()) {
             if (user.getEmail().equals(email)) {
                 isExistEmail = true;
                 break;
@@ -73,4 +68,8 @@ public class InMemoryUserStorage implements UserStorage {
         return isExistEmail;
     }
 
+    private int getId() {
+        id++;
+        return id;
+    }
 }

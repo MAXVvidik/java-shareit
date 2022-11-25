@@ -11,6 +11,33 @@ import java.util.stream.Collectors;
 
 public class ItemMapper {
 
+    public static Item fromItemDto(ItemDto itemDto) {
+        return new Item(
+                itemDto.getId(),
+                itemDto.getName(),
+                itemDto.getDescription(),
+                itemDto.getAvailable(),
+                Optional.ofNullable(itemDto.getOwner()).map(ItemMapper::toUser).orElse(null),
+                null,
+                Optional.ofNullable(itemDto.getLastBooking()).map(ItemMapper::toBooking).orElse(null),
+                Optional.ofNullable(itemDto.getNextBooking()).map(ItemMapper::toBooking).orElse(null),
+                itemDto.getComments().stream().map(ItemMapper::toComment).collect(Collectors.toList())
+        );
+    }
+
+    public static ItemDto toItemDto(Item item) {
+        return new ItemDto(
+                item.getId(),
+                item.getName(),
+                item.getDescription(),
+                item.getAvailable(),
+                toUserItem(item.getOwner()),
+                Optional.ofNullable(item.getLastBooking()).map(ItemMapper::toBookingItem).orElse(null),
+                Optional.ofNullable(item.getNextBooking()).map(ItemMapper::toBookingItem).orElse(null),
+                item.getComments().stream().map(ItemMapper::toCommentItem).collect(Collectors.toList())
+        );
+    }
+
     private static ItemDto.User toUserItem(User user) {
         return new ItemDto.User(
                 user.getId(),
@@ -62,33 +89,6 @@ public class ItemMapper {
                 null,
                 null,
                 null
-        );
-    }
-
-    public static Item fromItemDto(ItemDto itemDto) {
-        return new Item(
-                itemDto.getId(),
-                itemDto.getName(),
-                itemDto.getDescription(),
-                itemDto.getAvailable(),
-                Optional.ofNullable(itemDto.getOwner()).map(ItemMapper::toUser).orElse(null),
-                null,
-                Optional.ofNullable(itemDto.getLastBooking()).map(ItemMapper::toBooking).orElse(null),
-                Optional.ofNullable(itemDto.getNextBooking()).map(ItemMapper::toBooking).orElse(null),
-                itemDto.getComments().stream().map(ItemMapper::toComment).collect(Collectors.toList())
-        );
-    }
-
-    public static ItemDto toItemDto(Item item) {
-        return new ItemDto(
-                item.getId(),
-                item.getName(),
-                item.getDescription(),
-                item.getAvailable(),
-                toUserItem(item.getOwner()),
-                Optional.ofNullable(item.getLastBooking()).map(ItemMapper::toBookingItem).orElse(null),
-                Optional.ofNullable(item.getNextBooking()).map(ItemMapper::toBookingItem).orElse(null),
-                item.getComments().stream().map(ItemMapper::toCommentItem).collect(Collectors.toList())
         );
     }
 }
