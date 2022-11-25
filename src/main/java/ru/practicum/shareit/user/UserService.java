@@ -22,23 +22,10 @@ public class UserService {
     private final UserRepository userRepository;
     private final ValidateUserData validateUserData;
 
-
     @Autowired
     public UserService(UserRepository userRepository, ValidateUserData validateUserData) {
         this.userRepository = userRepository;
         this.validateUserData = validateUserData;
-    }
-
-    public void deleteUser(int id) {
-        userRepository.deleteById(id);
-    }
-
-    public boolean isContainsUser(int id) {
-        if (userRepository.existsById(id)) {
-            return true;
-        } else {
-            throw new InputDataException("Пользователь не найден");
-        }
     }
 
     public UserDto addUser(UserDto userDto) {
@@ -52,11 +39,15 @@ public class UserService {
     }
 
     public UserDto getUser(int id) {
-        return UserMapper.toUserDto(userRepository.findById(id).orElseThrow(() -> new InputDataException("Пользователь с таким id не найден")));
+        return UserMapper.toUserDto(userRepository.findById(id).orElseThrow(() -> new InputDataException(
+                "Пользователь с таким id не найден")));
     }
 
     public List<UserDto> getAllUsers() {
-        return userRepository.findAll().stream().map(UserMapper::toUserDto).collect(Collectors.toList());
+        return userRepository.findAll()
+                .stream()
+                .map(UserMapper::toUserDto)
+                .collect(Collectors.toList());
     }
 
     public UserDto updateUser(UserDto userDto, int id) throws InputDataException {
@@ -67,4 +58,15 @@ public class UserService {
         return UserMapper.toUserDto(userRepository.save(userDb));
     }
 
+    public void deleteUser(int id) {
+        userRepository.deleteById(id);
+    }
+
+    public boolean isContainsUser(int id) {
+        if (userRepository.existsById(id)) {
+            return true;
+        } else {
+            throw new InputDataException("Пользователь не найден");
+        }
+    }
 }

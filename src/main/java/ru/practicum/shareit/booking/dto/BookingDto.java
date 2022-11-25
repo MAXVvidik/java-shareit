@@ -9,7 +9,7 @@ import ru.practicum.shareit.booking.model.BookingStatus;
 import java.time.LocalDateTime;
 
 /**
- * TODO Sprint add-bookings.
+ * // TODO .
  */
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,10 +19,9 @@ public class BookingDto {
     private int id;
     private LocalDateTime start;
     private LocalDateTime end;
-    private BookingDto.Item item;
-    private BookingDto.User booker;
+    private Item item;
+    private User booker;
     private BookingStatus status;
-
 
     @Data
     @AllArgsConstructor

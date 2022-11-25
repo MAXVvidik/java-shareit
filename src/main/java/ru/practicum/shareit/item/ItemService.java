@@ -63,29 +63,6 @@ public class ItemService {
         }
     }
 
-    private Optional<Booking> getLastBookingForItem(int itemId) {
-        return bookingRepository.findFirstByItemIdAndStatusOrderByEnd(itemId,
-                BookingStatus.APPROVED);
-    }
-
-    private Optional<Booking> getNextBookingForItem(int itemId) {
-        return bookingRepository.findFirstByItemIdAndStatusOrderByEndDesc(itemId,
-                BookingStatus.APPROVED);
-    }
-
-    public boolean isContainItem(int id) {
-        if (!itemRepository.existsById(id)) {
-            throw new InputDataException("Вещь не найдена");
-        } else {
-            return true;
-        }
-    }
-
-    public void deleteItem(int id) {
-        isContainItem(id);
-        itemRepository.deleteById(id);
-    }
-
     public ItemDto getItemById(int itemId, int userId) {
         Item item = itemRepository.findById(itemId).orElseThrow(() -> new InputDataException(
                 "Вещь по id не найдена"));
@@ -141,6 +118,11 @@ public class ItemService {
         return ItemMapper.toItemDto(itemRepository.save(itemFromDb));
     }
 
+    public void deleteItem(int id) {
+        isContainItem(id);
+        itemRepository.deleteById(id);
+    }
+
     public Comment addComment(int userId, int itemId, Comment comment) {
         if (comment.getText().isEmpty()) {
             throw new ValidationException("Текст отзыва пустой");
@@ -157,6 +139,14 @@ public class ItemService {
         return commentRepository.save(comment);
     }
 
+    public boolean isContainItem(int id) {
+        if (!itemRepository.existsById(id)) {
+            throw new InputDataException("Вещь не найдена");
+        } else {
+            return true;
+        }
+    }
+
     private Item setBookings(Item item) {
         Optional<Booking> lastBooking = getLastBookingForItem(item.getId());
         Optional<Booking> nextBooking = getNextBookingForItem(item.getId());
@@ -167,4 +157,13 @@ public class ItemService {
         return item;
     }
 
+    private Optional<Booking> getLastBookingForItem(int itemId) {
+        return bookingRepository.findFirstByItemIdAndStatusOrderByEnd(itemId,
+                BookingStatus.APPROVED);
+    }
+
+    private Optional<Booking> getNextBookingForItem(int itemId) {
+        return bookingRepository.findFirstByItemIdAndStatusOrderByEndDesc(itemId,
+                BookingStatus.APPROVED);
+    }
 }

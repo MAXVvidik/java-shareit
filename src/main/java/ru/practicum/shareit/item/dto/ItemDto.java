@@ -42,15 +42,6 @@ public class ItemDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Data
-    public static class Comment {
-        private int id;
-        private String text;
-        private String authorName;
-    }
-
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @Data
     public static class Booking {
         private int id;
         private int bookerId;
@@ -58,4 +49,13 @@ public class ItemDto {
         private LocalDateTime end;
     }
 
+
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Data
+    public static class Comment {
+        private int id;
+        private String text;
+        private String authorName;
+    }
 }
