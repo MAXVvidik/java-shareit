@@ -31,13 +31,13 @@ public class BookingController {
 
     private final BookingService bookingService;
 
-//    @PostMapping
-//    public CreatedBookingDto createBooking(@RequestHeader(HEADER_USER_ID) int userId,
-//                                           @Valid @RequestBody CreatedBookingDto bookingDto) {
-//        log.info("Получен запрос к эндпоинту POST /bookings");
-//        Booking booking = bookingService.createBooking(userId, BookingMapper.toBooking(bookingDto));
-//        return BookingMapper.toCreatedBookingDto(booking);
-//    }
+    @PostMapping
+    public CreatedBookingDto createBooking(@RequestHeader(HEADER_USER_ID) int userId,
+                                           @Valid @RequestBody CreatedBookingDto bookingDto) {
+        log.info("Получен запрос к эндпоинту POST /bookings");
+        Booking booking = bookingService.createBooking(userId, BookingMapper.toBooking(bookingDto));
+        return BookingMapper.toCreatedBookingDto(booking);
+    }
 
     @PatchMapping("/{bookingId}")
     public BookingDto setApprove(@RequestHeader(HEADER_USER_ID) int userId,
