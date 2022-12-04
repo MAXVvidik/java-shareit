@@ -13,11 +13,9 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
-@RequiredArgsConstructor(onConstructor_ = @Autowired)
 class CommentMapperTest {
 
-    private final CommentMapper commentMapper;
+    private final CommentMapper commentMapper = new CommentMapper();
     private final LocalDateTime localDateTime = LocalDateTime.now();
     private final CommentDto commentDtoTest = CommentDto.builder()
             .id(1)

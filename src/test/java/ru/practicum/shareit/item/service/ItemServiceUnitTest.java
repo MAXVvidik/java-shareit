@@ -123,6 +123,13 @@ public class ItemServiceUnitTest {
         assertThat(item.getOwner(), equalTo(mockItem1.getOwner()));
     }
 
+//    @Test
+//    void testIsContains() {
+//        Mockito.when(userService.isContainsUser(anyInt())).thenReturn(false);
+//        assertThrows(InputDataException.class,()->{userService.isContainsUser(1);},"Пользователь не найден");
+//    }
+
+
     @Test
     void testCreateItemFailValidationItemWithoutAvailable() throws ValidationException {
         Mockito.when(validateItemData.checkAllData(Mockito.any(Item.class))).thenReturn(false);

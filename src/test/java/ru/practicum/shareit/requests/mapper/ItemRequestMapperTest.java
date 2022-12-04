@@ -14,11 +14,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
-@RequiredArgsConstructor(onConstructor_ = @Autowired)
 class ItemRequestMapperTest {
 
-    private final ItemRequestMapper itemRequestMapper;
+    private final ItemRequestMapper itemRequestMapper = new ItemRequestMapper();
     private final LocalDateTime localDateTime = LocalDateTime.now();
     private final User user = User.builder()
             .id(1)

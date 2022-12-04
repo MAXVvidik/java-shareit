@@ -17,10 +17,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
-@RequiredArgsConstructor(onConstructor_ = @Autowired)
 class ItemMapperTest {
-    private final ItemMapper itemMapper;
+    private final ItemMapper itemMapper = new ItemMapper();
     private final LocalDateTime localDateTime = LocalDateTime.now();
     private final User owner = User.builder()
             .id(1)

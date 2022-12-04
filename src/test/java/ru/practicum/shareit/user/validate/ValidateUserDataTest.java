@@ -6,7 +6,6 @@ import ru.practicum.shareit.user.model.User;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-@SpringBootTest
 class ValidateUserDataTest {
     private final ValidateUserData validate = new ValidateUserData();
     private final User userEmptyName = User.builder()
