@@ -43,7 +43,7 @@ public class ValidateItemData {
 
     public boolean isCorrectAvailable() {
         if (item.getAvailable() == null) {
-           return false;
+            return false;
         } else {
             return true;
         }
