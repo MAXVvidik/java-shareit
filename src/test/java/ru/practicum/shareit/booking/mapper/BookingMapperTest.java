@@ -15,8 +15,10 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 class BookingMapperTest {
-    private final BookingMapper bookingMapper = new BookingMapper();
+    private final BookingMapper bookingMapper;
 
     private final LocalDateTime localDateTime = LocalDateTime.now();
     private final Item item = Item.builder()

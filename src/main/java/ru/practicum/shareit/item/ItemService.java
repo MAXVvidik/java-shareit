@@ -89,19 +89,6 @@ public class ItemService implements PageTool {
         }
     }
 
-    public List<ItemDto> getAllItems(Integer userId, int from, int size) {
-        if (userId != null) {
-            return getItemsByUserId(userId, from, size)
-                    .stream()
-                    .map(itemMapper::toItemDto)
-                    .collect(Collectors.toList());
-        } else {
-            return itemRepository.findAll()
-                    .stream()
-                    .map(itemMapper::toItemDto)
-                    .collect(Collectors.toList());
-        }
-    }
 
     public Item updateItem(ItemDto itemDto, Integer userId) {
         Item itemFromDb = getItemById(itemDto.getId(), userId);

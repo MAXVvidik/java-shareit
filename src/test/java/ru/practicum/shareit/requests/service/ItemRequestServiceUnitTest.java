@@ -43,13 +43,10 @@ public class ItemRequestServiceUnitTest {
 
     private MockitoSession mockitoSession;
 
-    private ItemRequestMapper itemRequestMapper;
-
     @BeforeEach
     void setUp() {
         mockitoSession = Mockito.mockitoSession().initMocks(this).startMocking();
-        itemRequestService = new ItemRequestService(itemRequestRepository, userService, itemRequestMapper);
-        itemRequestMapper = new ItemRequestMapper();
+        itemRequestService = new ItemRequestService(itemRequestRepository, userService);
     }
 
     @AfterEach

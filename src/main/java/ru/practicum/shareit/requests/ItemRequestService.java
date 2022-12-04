@@ -27,7 +27,6 @@ public class ItemRequestService implements PageTool {
 
     private final ItemRequestRepository requestRepository;
     private final UserService userService;
-    private final ItemRequestMapper itemRequestMapper;
 
     public ItemRequest createRequest(int userId, ItemRequest request) {
         userService.isContainsUser(userId);
