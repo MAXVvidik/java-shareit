@@ -13,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import ru.practicum.shareit.exception.InputDataException;
 import ru.practicum.shareit.exception.ValidationException;
 import ru.practicum.shareit.requests.ItemRequestService;
-import ru.practicum.shareit.requests.mapper.ItemRequestMapper;
 import ru.practicum.shareit.requests.model.ItemRequest;
 import ru.practicum.shareit.requests.repository.ItemRequestRepository;
 import ru.practicum.shareit.user.UserService;
