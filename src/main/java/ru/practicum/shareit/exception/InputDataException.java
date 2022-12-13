@@ -5,3 +5,4 @@ public class InputDataException extends IllegalArgumentException {
         super(message);
     }
 }
+

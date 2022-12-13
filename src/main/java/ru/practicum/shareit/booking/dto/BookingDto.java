@@ -3,16 +3,14 @@ package ru.practicum.shareit.booking.dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import ru.practicum.shareit.booking.model.BookingStatus;
 
 import java.time.LocalDateTime;
 
 /**
- * TODO Sprint add-bookings.
+ * // TODO .
  */
 @AllArgsConstructor
-@NoArgsConstructor
 @Data
 @Builder
 public class BookingDto {
@@ -23,10 +21,9 @@ public class BookingDto {
     private BookingDto.User booker;
     private BookingStatus status;
 
-
     @Data
     @AllArgsConstructor
-    @NoArgsConstructor
+    @Builder
     public static class Item {
         private int id;
         private String name;
@@ -36,7 +33,7 @@ public class BookingDto {
 
     @Data
     @AllArgsConstructor
-    @NoArgsConstructor
+    @Builder
     public static class User {
         private int id;
         private String name;
